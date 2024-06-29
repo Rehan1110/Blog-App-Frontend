@@ -17,6 +17,7 @@ const BlogDetail = () => {
       [e.target.name]: e.target.value,
     }));
   };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const fetchDetails = async () => {
     const res = await axios
       .get(`https://blog-app-backend-68l9.onrender.com/api/blog/${id}`)
@@ -32,7 +33,7 @@ const BlogDetail = () => {
         description: data.blog.description,
       });
     });
-  }, []);
+  }, [fetchDetails]);
   const sendRequest = async () => {
     const res = await axios
       .put(`https://blog-app-backend-68l9.onrender.com/api/blog/update/${id}`, {

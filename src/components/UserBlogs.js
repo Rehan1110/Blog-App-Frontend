@@ -4,6 +4,7 @@ import Blog from "./Blog";
 const UserBlogs = () => {
   const [user, setUser] = useState();
   const id = localStorage.getItem("userId");
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const sendRequest = async () => {
     const res = await axios
       .get(`https://blog-app-backend-68l9.onrender.com/api/blog/user/${id}`)
@@ -13,7 +14,7 @@ const UserBlogs = () => {
   };
   useEffect(() => {
     sendRequest().then((data) => setUser(data.user));
-  }, []);
+  }, [sendRequest]);
   console.log(user);
   return (
     <div>
