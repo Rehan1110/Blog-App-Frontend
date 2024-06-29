@@ -19,7 +19,7 @@ const BlogDetail = () => {
   };
   const fetchDetails = async () => {
     const res = await axios
-      .get(`http://localhost:5000/api/blog/${id}`)
+      .get(`https://blog-app-backend-68l9.onrender.com/api/blog/${id}`)
       .catch((err) => console.log(err));
     const data = await res.data;
     return data;
@@ -32,10 +32,10 @@ const BlogDetail = () => {
         description: data.blog.description,
       });
     });
-  }, [id]);
+  }, []);
   const sendRequest = async () => {
     const res = await axios
-      .put(`http://localhost:5000/api/blog/update/${id}`, {
+      .put(`https://blog-app-backend-68l9.onrender.com/api/blog/update/${id}`, {
         title: inputs.title,
         description: inputs.description,
       })
