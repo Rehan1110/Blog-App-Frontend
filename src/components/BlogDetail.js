@@ -17,15 +17,14 @@ const BlogDetail = () => {
       [e.target.name]: e.target.value,
     }));
   };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const fetchDetails = async () => {
-    const res = await axios
-      .get(`https://blog-app-backend-68l9.onrender.com/api/blog/${id}`)
-      .catch((err) => console.log(err));
-    const data = await res.data;
-    return data;
-  };
   useEffect(() => {
+    const fetchDetails = async () => {
+      const res = await axios
+        .get(`https://blog-app-backend-68l9.onrender.com/api/blog/${id}`)
+        .catch((err) => console.log(err));
+      const data = await res.data;
+      return data;
+    };
     fetchDetails().then((data) => {
       setBlog(data.blog);
       setInputs({
@@ -33,7 +32,7 @@ const BlogDetail = () => {
         description: data.blog.description,
       });
     });
-  }, [fetchDetails]);
+  }, [id]);
   const sendRequest = async () => {
     const res = await axios
       .put(`https://blog-app-backend-68l9.onrender.com/api/blog/update/${id}`, {

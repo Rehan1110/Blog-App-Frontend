@@ -4,17 +4,18 @@ import Blog from "./Blog";
 const UserBlogs = () => {
   const [user, setUser] = useState();
   const id = localStorage.getItem("userId");
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const sendRequest = async () => {
-    const res = await axios
-      .get(`https://blog-app-backend-68l9.onrender.com/api/blog/user/${id}`)
-      .catch((err) => console.log(err));
-    const data = await res.data;
-    return data;
-  };
+
+  
   useEffect(() => {
+    const sendRequest = async () => {
+      const res = await axios
+        .get(`https://blog-app-backend-68l9.onrender.com/api/blog/user/${id}`)
+        .catch((err) => console.log(err));
+      const data = await res.data;
+      return data;
+    };
     sendRequest().then((data) => setUser(data.user));
-  }, [sendRequest]);
+  }, [id]);
   console.log(user);
   return (
     <div>
